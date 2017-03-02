@@ -1,0 +1,21 @@
+language: cpp
+compiler: gcc
+dist: trusty
+sudo: required
+services:
+  - docker
+# env:
+#   global:
+#    - secure:
+before_install:
+  - docker pull base/archlinux
+# addons:
+#   coverity_scan:
+#     project:
+#       name: "KDE/k3b"
+#       description: "Build submitted via Travis CI"
+#     build_command_prepend: "echo Coverity Scan Online!"
+#     build_command:   "make -j 4"
+#     branch_pattern: master
+script:
+  - docker run -it --rm -v ${TRAVIS_BUILD_DIR}:/root/overlay base/archlinux "/bin/bash" "/root/overlay/.travis/docker_install.sh"
